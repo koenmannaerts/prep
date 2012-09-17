@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace prep.utility
 {
   public class MatchFactory<ItemToMatch, PropertyType> : ICreateMatchers<ItemToMatch, PropertyType>
@@ -18,12 +16,13 @@ namespace prep.utility
 
     public IMatchAn<ItemToMatch> equal_to_any(params PropertyType[] values)
     {
-      return create_using(x => new List<PropertyType>(values).Contains(accessor(x)));
+      return create_using(new EqualToAny<PropertyType>(values));
     }
 
-    public IMatchAn<ItemToMatch> create_using(Condition<ItemToMatch> condition)
+    public IMatchAn<ItemToMatch> create_using(IMatchAn<PropertyType> condition)
     {
-      return new ConditionalMatch<ItemToMatch>(condition);
+      return new PropertyMatch<ItemToMatch, PropertyType>(accessor,
+                                                          condition); 
     }
 
     public IMatchAn<ItemToMatch> not_equal_to(PropertyType value)
