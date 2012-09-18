@@ -17,6 +17,7 @@
 
     public MatchCreationExtensionPoint(PropertyAccessor<ItemToMatch, PropertyType> accessor)
     {
+        Range<int> r = new Range<int>().StartsWith(5).Include().EndsWith(10);
       this.accessor = accessor;
     }
   }

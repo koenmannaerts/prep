@@ -18,7 +18,7 @@ namespace prep.utility
     {
       return extension_point.create_match_using(condition);
     }
-
+      
     public static IMatchAn<ItemToMatch> not_equal_to<ItemToMatch,PropertyType>(this IProvideAccessToCreateMatchers<ItemToMatch,PropertyType> extension_point,PropertyType value)
     {
       return new NegatingMatch<ItemToMatch>(equal_to(extension_point,value));
@@ -29,10 +29,21 @@ namespace prep.utility
       return create_using(extension_point,new FallsInRange<PropertyType>(new RangeWithNoUpperBound<PropertyType>(value)));
     }
 
+    public static IMatchAn<ItemToMatch> greater_than<ItemToMatch>(this IProvideAccessToCreateMatchers<ItemToMatch,DateTime> extension_point,int value)
+    {
+      return create_using(extension_point,new YearIsGreaterThan(value));
+    
+    }
+
     public static IMatchAn<ItemToMatch> between<ItemToMatch,PropertyType>(this IProvideAccessToCreateMatchers<ItemToMatch,PropertyType> extension_point,PropertyType start, PropertyType end) where PropertyType : IComparable<PropertyType>
     {
       return
         create_using(extension_point,new FallsInRange<PropertyType>(new InclusiveRange<PropertyType>(start, end)));
+    }
+
+    public static IMatchAn<ItemToMatch> between<ItemToMatch>(this IProvideAccessToCreateMatchers<ItemToMatch,DateTime> extension_point,int start, int end)
+    {
+      return create_using(extension_point,new YearIsBetween(start, end));
     }
   }
 }

@@ -19,3 +19,7 @@ namespace prep.utility
     }
   }
 }
+
+namespace prep.utility
+{
+}

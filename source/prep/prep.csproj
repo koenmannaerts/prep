@@ -86,8 +86,11 @@
     <Compile Include="utility\PropertyAccessor.cs" />
     <Compile Include="utility\PropertyMatch.cs" />
     <Compile Include="utility\Range.cs" />
+    <Compile Include="utility\RangeExtensions.cs" />
     <Compile Include="utility\RangeWithNoUpperBound.cs" />
     <Compile Include="utility\Where.cs" />
+    <Compile Include="utility\YearIsBetween.cs" />
+    <Compile Include="utility\YearIsGreaterThan.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
